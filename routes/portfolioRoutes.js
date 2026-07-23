@@ -5,8 +5,8 @@ import {
   updatePortfolio,
   generatePortfolioContent,
   getPortfolioBySlug,
-  publishPortfolio,
-} from '../controllers/portfolioController.js';
+  publishPortfolio, 
+} from '../controllers/portfolioController.js';         
 
 const router = express.Router();
 
