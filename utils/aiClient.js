@@ -35,7 +35,7 @@ The projectDescriptions array must have exactly one entry per project listed abo
 
 export async function generateContentWithAI(data) {
   const prompt = buildPrompt(data);
-  const result = await model.generateContent(prompt);
+  const result = await model.generateContent(prompt);           
   const raw = result.response.text().trim();
 
   // Gemini sometimes wraps JSON in ```json fences despite instructions — strip them.
