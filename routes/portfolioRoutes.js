@@ -10,8 +10,8 @@ import {
 
 const router = express.Router();
 
-router.post('/generate', generatePortfolioContent);
-router.get('/slug/:slug', getPortfolioBySlug);
+router.post('/generate', generatePortfolioContent);            
+router.get('/slug/:slug', getPortfolioBySlug);       
 router.post('/', createPortfolio);
 router.get('/:id', getPortfolioById);
 router.patch('/:id', updatePortfolio);
