@@ -27,6 +27,38 @@ const serviceSchema = new mongoose.Schema(
   { _id: false }
 );
 
+// --- NEW: optional sections ---
+const certificateSchema = new mongoose.Schema(
+  {
+    title: { type: String, default: '' },
+    issuer: { type: String, default: '' },
+    year: { type: String, default: '' },
+    link: { type: String, default: '' },       // credential URL, optional
+    image: { type: String, default: '' },      // base64 certificate image, optional
+  },
+  { _id: false }
+);
+
+const achievementSchema = new mongoose.Schema(
+  {
+    title: { type: String, default: '' },
+    description: { type: String, default: '' },
+    year: { type: String, default: '' },
+  },
+  { _id: false }
+);
+
+const internshipSchema = new mongoose.Schema(
+  {
+    role: { type: String, default: '' },
+    company: { type: String, default: '' },
+    duration: { type: String, default: '' },
+    description: { type: String, default: '' },
+  },
+  { _id: false }
+);
+// --- END NEW ---
+
 const statsSchema = new mongoose.Schema(
   {
     projects: { type: String, default: '' },
@@ -86,6 +118,11 @@ const portfolioSchema = new mongoose.Schema(
       github: { type: String, default: '' },
       linkedin: { type: String, default: '' },
       facebook: { type: String, default: '' },
+
+      // NEW: optional per-portfolio sections — empty array = section hidden
+      certificates: { type: [certificateSchema], default: [] },
+      achievements: { type: [achievementSchema], default: [] },
+      internships: { type: [internshipSchema], default: [] },
     },
 
     content: {
@@ -97,7 +134,7 @@ const portfolioSchema = new mongoose.Schema(
     },
 
     mode: { type: String, enum: ['template', 'ai-layout'], default: 'template' },
-    selectedTemplate: { type: String, default: null },
+    selectedTemplate: { type: String, default: null }, // 'template-1' | 'template-2' | 'template-3'
     layoutJson: { type: layoutSchema, default: null },
 
     slug: { type: String, unique: true, sparse: true, index: true },
